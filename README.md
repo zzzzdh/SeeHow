@@ -20,6 +20,23 @@ Note: You need to change your own path for each process.
 ## Additional process
 We also consider captions in this work, which is used to generate text summary to describe the coding steps. Please refer to our [TOOL](http://seecollections.com/seehow/) for the results.
 
+## How to use CRNN
+1. Download the CRNN project [Here](https://github.com/bgshih/crnn.git)
+2. To build the project, first install the latest versions of [Torch7](http://torch.ch), [fblualib](https://github.com/facebook/fblualib) and LMDB. Please follow their installation instructions respectively. On Ubuntu, lmdb can be installed by ``apt-get install liblmdb-dev``.
+
+3. To build the project, go to ``src/`` and execute ``sh build_cpp.sh`` to build the C++ code. If successful, a file named ``libcrnn.so`` should be produced in the ``src/`` directory.
+
+4. Run demo
+--------
+
+A demo program can be found in ``src/demo.lua``. Before running the demo, download a pretrained model from [here](https://www.dropbox.com/s/tx6cnzkpg99iryi/crnn_demo_model.t7?dl=0). Put the downloaded model file ``crnn_demo_model.t7`` into directory ``model/crnn_demo/``. Then launch the demo by:
+
+    th demo.lua
+
+The demo reads an example image and recognizes its text content.
+
+## How to process narrator
+
 In order to obtain the text summary, you need to:
 1. Parse vtt file, which has been done in `clip_video_ffmpeg.py`
 2. Punctuation restoration by `segment_punctuation.py`, as the captions do not have any punctuation.
